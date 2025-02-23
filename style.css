@@ -1,25 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
 /* 使用link标签的方式性能比import更好 */
 
-
+/* 选择页面上的所有元素、重置默认样式 */
 * {
     padding: 0;
     margin: 0;
+    /* border-box时，元素的宽度和高度包含内边距（padding）和边框（border） */
     box-sizing: border-box;
     font-family: "Montserrat", sans-serif;
 }
 
+/*
+设置 body 元素的最小高度为 100vh，使其至少占据整个视口的高度；
+如果不设置，body的高度默认是内部元素撑开，即由内部元素的高度决定。
+*/
 body {
+    /* 让元素在水平、垂直方向居中的一种方法*/
     display: flex;
-    /* 主轴 交叉轴*/
-    padding: 15px;
+    /* padding: 15px; */
     justify-content: center;
     align-items: center;
-    /* 最小高度 */
-    /*如果元素的内容高度不足以填满视口，min-height: 100vh; 会强制元素高度至少等于视口的高度。*/
     min-height: 100vh;
     background-color: #5145BA;
 }
+
+/* align-items 默认是 stretch，如果只设置 justify-content， 相当于同时设置了 align-items: sretch;*/
+/* 如果不希望 align-items 拉伸子元素的高度，可以将其值设置为其他值，例如 flex-start、flex-end 或 center。这样，子元素的高度将由其内容决定，而不会被拉伸。 */
+/*这里 .config-container 高度由内容决定，除非设置了固定高度 */
 
 .config-container {
     width: 415px;
@@ -61,6 +68,7 @@ body {
     cursor: pointer;
     border: 1px solid #9b8fff;
     transition: 0.3s ease;
+    /* transition属性允许在元素样式更改时（例如：hover 状态），平滑地从一个样式过渡到另一个样式，而不是立即生硬地变化。 */
 }
 
 .config-option button:hover {
@@ -70,8 +78,10 @@ body {
 .config-option .question-options {
     display: flex;
     flex-wrap: wrap;
+    /*当项目超出容器宽度时，它可以使项目换行显示，而不是溢出或缩小。*/
     gap: 12px;
-    padding: 0, 30px;
+    /*注意中间没有符号隔开*/
+    padding: 0 30px;
     justify-content: center;
 }
 
@@ -83,6 +93,7 @@ body {
     font-size: 1rem;
     /* font-weight: 500; */
     text-transform: capitalize;
+    /* 上下、左右padding */
     padding: 13px 25px;
     margin-top: 20px;
     color: #fff;
