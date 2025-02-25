@@ -28,14 +28,20 @@ body {
 /* 如果不希望 align-items 拉伸子元素的高度，可以将其值设置为其他值，例如 flex-start、flex-end 或 center。这样，子元素的高度将由其内容决定，而不会被拉伸。 */
 /*这里 .config-container 高度由内容决定，除非设置了固定高度 */
 
+/* :where()是选择器函数，用来组合多个选择器 */
+:where(.config-container, .quiz-container) {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.13);
+}
+
 .config-container {
+    display: none;
     width: 415px;
     padding: 25px;
     text-align: center;
     text-transform: capitalize;
-    background-color: #fff;
-    border-radius: 8px;
-    /* box-shadow: ; */
+
 }
 
 .config-container .config-title {
@@ -71,7 +77,9 @@ body {
     /* transition属性允许在元素样式更改时（例如：hover 状态），平滑地从一个样式过渡到另一个样式，而不是立即生硬地变化。 */
 }
 
-.config-option button:hover {
+/* 选择器集合 */
+.config-option button:hover,
+.quiz-container .answer-option:hover {
     background: #dad5fd;
 }
 
@@ -89,13 +97,14 @@ body {
     flex: 1 1 10%;
 }
 
-.start-quiz-btn {
+/* 按钮样式复用 */
+.config-container .start-quiz-btn,
+.quiz-footer .next-question-btn {
     font-size: 1rem;
     /* font-weight: 500; */
     text-transform: capitalize;
     /* 上下、左右padding */
     padding: 13px 25px;
-    margin-top: 20px;
     color: #fff;
     background-color: #5145BA;
     border: none;
@@ -104,6 +113,104 @@ body {
     transition: background 0.3s ease;
 }
 
-.config-container .start-quiz-btn:hover {
+.config-container .start-quiz-btn {
+    margin-top: 30px;
+}
+
+/* 按钮样式复用 */
+.config-container .start-quiz-btn:hover,
+.quiz-footer .next-question-btn:hover {
     background: #403795;
+}
+
+/* ------------- Quiz Container ------------ */
+.quiz-container {
+    width: 480px;
+}
+
+/* 后代选择器 */
+.quiz-container .quiz-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 25px;
+    /* 使用 box-shadow 设置分界线 */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.09);
+}
+
+.quiz-header .quiz-title {
+    font-size: 1.43rem;
+    font-weight: 700;
+}
+
+.quiz-header .quiz-timer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 70px;
+    color: #fff;
+    font-weight: 600;
+    padding: 7px 9px;
+    border-radius: 6px;
+    background: #32313c;
+}
+
+.quiz-header .quiz-timer span {
+    font-size: 1.4rem;
+}
+
+.quiz-container .quiz-content {
+    padding: 20px 25px 25px;
+}
+
+
+.quiz-content .question-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.quiz-container .answer-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    list-style: none;
+    margin-top: 20px;
+}
+
+.quiz-container .answer-option {
+    font-size: 1.2rem;
+    font-weight: 500;
+    background: #f3f1ff;
+    padding: 13px 16px;
+    border: 1px solid #b5acff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.quiz-container .quiz-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    /* 使用 border-top 设置分界线 */
+    border-top: 1px solid #c6c6c6;
+}
+
+.quiz-footer .question-status {
+    font-weight: 500;
+}
+
+.quiz-footer .question-status b {
+    font-weight: 600;
+}
+
+.quiz-footer .next-question-btn {
+    /* 使得元素表现为行内块级元素，并且内部的子元素使用 Flexbox 布局 */
+    /* inline-flex 使元素生成一个行内级别的弹性盒子。
+    这意味着该元素会像行内元素一样排列，但其内部的子元素会按照弹性盒模型的规则进行布局。 */
+    display: inline-flex;
+    gap: 5px;
+    align-items: center;
+    padding: 9px 17px;
 }
