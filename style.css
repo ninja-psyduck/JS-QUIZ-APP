@@ -35,6 +35,7 @@ body {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.13);
 }
 
+/* --------------------------------- Quiz Container -------------------------------- */
 .config-container {
     display: none;
     width: 415px;
@@ -84,9 +85,11 @@ body {
 }
 
 .config-option .question-options {
+    /*使用 display: flex; 的容器表现为块级元素，会占据其父容器的整个宽度，并在其前后换行。*/
     display: flex;
+    /* flex-wrap 实现换行或者多行多列 */
+    /* 当项目超出容器宽度时，它可以使项目换行显示，而不是溢出或缩小。*/
     flex-wrap: wrap;
-    /*当项目超出容器宽度时，它可以使项目换行显示，而不是溢出或缩小。*/
     gap: 12px;
     /*注意中间没有符号隔开*/
     padding: 0 30px;
@@ -94,6 +97,9 @@ body {
 }
 
 .question-options button {
+    /* flex 是一个复合属性，用于设置弹性布局容器中子元素（项目）的弹性伸缩能力。 */
+    /* display: flex; 用于设置弹性布局容器，而 flex 用于设置弹性布局项目。 */
+    /*--- flex-grow 有可用空间时填充, flex-shrink空间不足时收缩, flex-basis 初始大小为父元素的宽度的 n% ---*/
     flex: 1 1 10%;
 }
 
@@ -123,7 +129,7 @@ body {
     background: #403795;
 }
 
-/* ------------- Quiz Container ------------ */
+/* --------------------------------- Quiz Container -------------------------------- */
 .quiz-container {
     width: 480px;
 }
@@ -178,6 +184,9 @@ body {
 }
 
 .quiz-container .answer-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-size: 1.2rem;
     font-weight: 500;
     background: #f3f1ff;
@@ -186,6 +195,26 @@ body {
     border-radius: 6px;
     cursor: pointer;
     transition: 0.3s ease;
+}
+
+.quiz-container .answer-option.correct {
+    border-color: #b7e1c1;
+    background: #d4edda;
+    color: #155724;
+}
+
+.quiz-content .answer-option span {
+    display: block;
+    /* 阻止 <span> 元素在其父元素空间不足时缩小 */
+    flex-shrink: 0;
+    /* 上右下左 */
+    margin: -4px -3px -4px 12px;
+}
+
+.quiz-container .answer-option.incorrect {
+    border-color: #f4bec3;
+    background: #f8d7da;
+    color: #721c24;
 }
 
 .quiz-container .quiz-footer {
